@@ -1,0 +1,55 @@
+lab 2 tsc
+dut - design rtl, 
+top - fisierul cel mai deasupra
+test bech - mediu de verificare
+
+
+wire, logic, bit   - variabile 
+mcp - signed  (bitii din stanga)
+lsb - unsigned (bitii din dreapta)
+numar complement fata de 2 - nr in binar, negat si adaugat 1  (il faci in complement)
+
+overflow
+ 
+pt signed  0-256 .... 0-255
+
+
+
+pt complement fata de 2
+scadem 1 si negam 
+
+
+4 stari : x 0 ; 0 1
+
+
+timpul de porcesare 
+timpul de executie (simulare)
+
+
+clockuri defazate, desincronizate
+reset este un semnal asincron
+
+
+hard disk - cu 10
+ram - cu multiplii lu 2 
+
+
+linia 19 e registru din registe+pck
+linia 23 e vector din instr_register
+
+
+
+truncheaza (lucru cu biti)
+
+
+
+TEMA
+
+
+
+
+in instruction word sa adaug camp - rezultat  (in dut .....) op,a,b si rez sa fie
+la write cand o sa citesc, poate sa fie defazat cu un tact
+
+
+
