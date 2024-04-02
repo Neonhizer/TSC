@@ -11,7 +11,7 @@ Z0 dC:/Users/rusuv/Desktop/TSC/TSC_Lab/sim
 vinstr_register
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 Z2 DXx4 work 18 instr_register_pkg 0 22 P<j;HB[=6glcU98lkB[^D0
-Z3 !s110 1711479536
+Z3 !s110 1712053704
 !i10b 1
 !s100 :mnWC>O09:7FO2>nKM=k13
 IT`8o9XD]CPXR;ME1LU01k0
@@ -27,9 +27,9 @@ Z5 OV;L;10.5c;63
 r1
 !s85 0
 31
-Z6 !s108 1711479536.000000
+Z6 !s108 1712053704.000000
 Z7 !s107 ../lab01_testbench-interface/top.sv|../lab01_testbench-interface/instr_register_test.sv|../lab_dut/instr_register.sv|../lab_dut/instr_register_pkg.sv|
-Z8 !s90 -reportprogress|300|-sv|-timescale|1ps/1ps|-work|work|-f|sources.txt|
+Z8 !s90 -sv|-timescale|1ps/1ps|-work|work|-f|sources.txt|
 !i113 1
 Z9 o-sv -timescale 1ps/1ps -work work
 Z10 !s92 -sv -timescale 1ps/1ps -work work +incdir+../lab_dut +incdir+../lab_dut +incdir+../lab01_testbench-interface +incdir+../lab01_testbench-interface
