@@ -27,13 +27,13 @@ module instr_register_test
   result_t rezultatdenoi;
   instruction_t  iw_reg_test [0:31];
 
-
+  parameter NAME;
   parameter WR_NR = 64;
   parameter RD_NR = 64;
   parameter WR_ORDER = 0;
   parameter RR_ORDER = 0;
   int seed = 555;
-
+  int file;
   int contor1 = 0;
   int contor2 = 0;
     //display pune pe consola
@@ -104,6 +104,16 @@ module instr_register_test
     endcase
     end
 
+    // file = $fopen("../reports/regression_transcript/regression_transcript.txt", "a");
+    // $fdisplay(file, "There are %0d passed results and %0d failed results", contor1, contor2);
+    // $fclose(file);
+
+
+    
+
+
+
+
     @(posedge clk) ;
     $display("\n***********************************************************");
     $display(  "***  THIS IS A SELF-CHECKING TESTBENCH (YET). YOU DON'T ***");
@@ -130,7 +140,7 @@ module instr_register_test
 
     operand_a     = $random(seed)%16;                 // between -15 and 15
     operand_b     = $unsigned($random)%16;            // between 0 and 15
-    opcode        =   opcode_t'($unsigned($random)%8);  // between 0 and 7, cast to opcode_t type
+    opcode        =   opcode_t'($unsigned($random)%9);  // between 0 and 7, cast to opcode_t type
 
     case (WR_ORDER)
     0 : write_pointer = temp++;
@@ -185,6 +195,7 @@ function void check_result;
         MULT : rezultatdenoi = iw_reg_test[read_pointer].op_a * iw_reg_test[read_pointer].op_b;
         DIV : rezultatdenoi = iw_reg_test[read_pointer].op_a / iw_reg_test[read_pointer].op_b;
         MOD : rezultatdenoi = iw_reg_test[read_pointer].op_a % iw_reg_test[read_pointer].op_b;
+        POW: rezultatdenoi = iw_reg_test[read_pointer].op_a ** iw_reg_test[read_pointer].op_b;
     endcase
 
     $display("rezultatul nostru: ", rezultatdenoi);
@@ -201,6 +212,7 @@ function void check_result;
 
 
 $display("\n***********************************************************");
+reports;
 $display("Rezultate finale ale testelor:");
 $display("Numar teste trecute: %0d", contor1);
 $display("Numar teste nereusite: %0d", contor2);
@@ -208,6 +220,20 @@ $display("***********************************************************\n");
 
 
 endfunction: check_result
+
+
+
+function void reports;
+  int file;
+  file = $fopen("../reports/regression_transcript/regression_transcript.txt", "a");
+  if(contor2 == 0)
+    $fdisplay(file, "NAME: %s; WR_NR: %0d; RD_NR: %0d; WR_ORDER: %0d; RD_ORDER: %0d; Status:",NAME, WR_NR,RD_NR,WR_ORDER,RR_ORDER,"PASS!" );
+  else
+     $fdisplay(file, "NAME: %s; WR_NR: %0d; RD_NR: %0d; WR_ORDER: %0d; RD_ORDER: %0d; Status:",NAME, WR_NR,RD_NR,WR_ORDER,RR_ORDER,"FAIL!" );
+    
+  $fclose(file);
+endfunction
+
 
 endmodule: instr_register_test
 
