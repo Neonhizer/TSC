@@ -11,15 +11,15 @@ Z0 dC:/Users/rusuv/Desktop/TSC/TSC_Lab/sim
 vinstr_register
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 Z2 DXx4 work 18 instr_register_pkg 0 22 I94JAmRcXi1[4zkj9abom1
-Z3 !s110 1712659220
+Z3 !s110 1713816448
 !i10b 1
-!s100 zaVHn5G89IB0fDS<ValH60
-IlX^m5@P[LCY72OKme9XK02
+!s100 [f[W`I@ObFSB0Ha?Dfdi03
+IM22ae@UE:AN1HT]J55d3i0
 Z4 VDg1SIo80bB@j0V0VzS_@n1
 !s105 instr_register_sv_unit
 S1
 R0
-w1712655432
+w1713815908
 8../lab_dut/instr_register.sv
 F../lab_dut/instr_register.sv
 L0 9
@@ -27,7 +27,7 @@ Z5 OV;L;10.5c;63
 r1
 !s85 0
 31
-Z6 !s108 1712659220.000000
+Z6 !s108 1713816448.000000
 Z7 !s107 ../lab01_testbench-interface/top.sv|../lab01_testbench-interface/instr_register_test.sv|../lab_dut/instr_register.sv|../lab_dut/instr_register_pkg.sv|
 Z8 !s90 -sv|-timescale|1ps/1ps|-work|work|-f|sources.txt|
 !i113 1
@@ -63,13 +63,13 @@ R1
 R2
 R3
 !i10b 1
-!s100 BO5b4Eba0=_gh@?hh6OTK0
-I2AiB8=g4VKZF]de_b0TQB2
+!s100 Fc`:30XQK<RK^8PSfjmFT2
+I;JBCbFZ8o[<UMg8cQ0TKA3
 R4
 !s105 instr_register_test_sv_unit
 S1
 R0
-w1712659189
+w1713816427
 8../lab01_testbench-interface/instr_register_test.sv
 F../lab01_testbench-interface/instr_register_test.sv
 L0 8

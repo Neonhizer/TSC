@@ -1,1 +1,1 @@
-# do run.do 50 50 1 1 rand_rand
+# do run.do 50 50 2 1 dec_rand

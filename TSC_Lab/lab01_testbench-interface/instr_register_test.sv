@@ -24,15 +24,24 @@ module instr_register_test
   timeunit 1ns/1ns;
 
 
+  logic bit_semn;   //ia 1(negativ) sau 0(pozitiv)
+  assign bit_semn = instruction_word.rezultat[63];
+
+
+
   result_t rezultatdenoi;
   instruction_t  iw_reg_test [0:31];
 
-  parameter NAME;
+
+
+
+
   parameter WR_NR = 64;
   parameter RD_NR = 64;
   parameter WR_ORDER = 0;
   parameter RR_ORDER = 0;
-  int seed = 555;
+  parameter seed_nou;
+  int seed = seed_nou;
   int file;
   int contor1 = 0;
   int contor2 = 0;
@@ -104,9 +113,14 @@ module instr_register_test
     endcase
     end
 
-    // file = $fopen("../reports/regression_transcript/regression_transcript.txt", "a");
-    // $fdisplay(file, "There are %0d passed results and %0d failed results", contor1, contor2);
-    // $fclose(file);
+
+
+
+
+
+    file = $fopen("../reports/regression_transcript/regression_transcript.txt", "a");
+    $fdisplay(file, "WRITE_ORDER:%0d, READ_ORDER:%0d, there are %0d passed results and %0d failed results", WR_ORDER, RR_ORDER, contor1, contor2 );
+    $fclose(file);
 
 
     
@@ -173,6 +187,7 @@ module instr_register_test
     $display("  operand_a = %0d",   instruction_word.op_a);
     $display("  operand_b = %0d\n", instruction_word.op_b);
     $display("  result    = %0d", instruction_word.rezultat);
+    $display("  bit_semn = %0d\n", instruction_word.rezultat[63]);
     
     
 
@@ -193,8 +208,21 @@ function void check_result;
         ADD : rezultatdenoi = iw_reg_test[read_pointer].op_a + iw_reg_test[read_pointer].op_b;
         SUB : rezultatdenoi = iw_reg_test[read_pointer].op_a - iw_reg_test[read_pointer].op_b;
         MULT : rezultatdenoi = iw_reg_test[read_pointer].op_a * iw_reg_test[read_pointer].op_b;
-        DIV : rezultatdenoi = iw_reg_test[read_pointer].op_a / iw_reg_test[read_pointer].op_b;
-        MOD : rezultatdenoi = iw_reg_test[read_pointer].op_a % iw_reg_test[read_pointer].op_b;
+        
+        
+        DIV : 
+            if(iw_reg_test[read_pointer].op_b == 0) 
+            rezultatdenoi = 0;
+            else
+            rezultatdenoi = iw_reg_test[read_pointer].op_a / iw_reg_test[read_pointer].op_b;
+        
+        
+        MOD:
+            if(iw_reg_test[read_pointer].op_b == 0) 
+            rezultatdenoi = 0;
+            else
+            rezultatdenoi = iw_reg_test[read_pointer].op_a % iw_reg_test[read_pointer].op_b;
+
         POW: rezultatdenoi = iw_reg_test[read_pointer].op_a ** iw_reg_test[read_pointer].op_b;
     endcase
 
@@ -212,7 +240,7 @@ function void check_result;
 
 
 $display("\n***********************************************************");
-reports;
+// reports;
 $display("Rezultate finale ale testelor:");
 $display("Numar teste trecute: %0d", contor1);
 $display("Numar teste nereusite: %0d", contor2);
@@ -222,22 +250,4 @@ $display("***********************************************************\n");
 endfunction: check_result
 
 
-
-function void reports;
-  int file;
-  file = $fopen("../reports/regression_transcript/regression_transcript.txt", "a");
-  if(contor2 == 0)
-    $fdisplay(file, "NAME: %s; WR_NR: %0d; RD_NR: %0d; WR_ORDER: %0d; RD_ORDER: %0d; Status:",NAME, WR_NR,RD_NR,WR_ORDER,RR_ORDER,"PASS!" );
-  else
-     $fdisplay(file, "NAME: %s; WR_NR: %0d; RD_NR: %0d; WR_ORDER: %0d; RD_ORDER: %0d; Status:",NAME, WR_NR,RD_NR,WR_ORDER,RR_ORDER,"FAIL!" );
-    
-  $fclose(file);
-endfunction
-
-
 endmodule: instr_register_test
-
-
-
-
-
